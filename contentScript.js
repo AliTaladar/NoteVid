@@ -9,6 +9,8 @@
         if (type === "NEW") {
             currentVideo = videoId;
             newVideoLoaded();
+        } else if (type === "PLAY") {
+            youtubePlayer.currentTime = value;
         }
     });
 
@@ -41,8 +43,6 @@
 
     const addNewBookmarkEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;
-        console.log(youtubePlayer.currentTime);
-        console.log(getTime(youtubePlayer.currentTime));
         const newBookmark = {
             time: currentTime,
             desc: "Bookmark at " + getTime(currentTime),

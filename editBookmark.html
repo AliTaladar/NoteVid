@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Bookmark</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 300px;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 10px;
+        }
+
+        .top-row input {
+            width: calc(100% - 120px);
+            padding: 4px 15px;
+            margin-right: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
+            resize: none;
+        }
+
+        button {
+            margin-left: 1px;
+            border-radius: 20px;
+            padding: 7px 8px;
+            border: none;
+        }
+
+        .playButton {
+            background-color: green;
+            color: white;
+        }
+
+        .deleteButton {
+            background-color: rgb(200, 0, 0);
+            color: white;
+        }
+
+        button:hover {
+            box-shadow: 1px 1px 5px 0 rgb(140, 140, 140, 0.5);
+        }
+
+        textarea {
+            width: calc(100% - 30px);
+            height: 150px;
+            margin: 0 10px;
+            padding: 10px 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
+            resize: none;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #c3c3c3;
+            box-shadow: 1px 1px 5px 0 rgb(140, 140, 140, 0.5);
+        }
+
+        .bottomRow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 10px;
+        }
+
+        .save-button .returnButton {
+            float: right;
+            padding-left: 30px;
+            padding-right: 30px;
+            margin: 10px 10px;
+        }
+
+        .descDiv {
+            height: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="top-row">
+        <input type="text" id="bookmarkName" placeholder="Bookmark Name" value="">
+        <div>
+            <button id="playButton" class="playButton">Play</button>
+            <button id="deleteButton" class="deleteButton">Delete</button>
+        </div>
+    </div>
+
+    <textarea id="noteArea" placeholder="Your notes here..."></textarea>
+    <div class="bottomRow">
+        <button class="returnButton" id="returnButton">Return</button>
+        <button class="save-button" id="saveButton">Save</button>
+    </div>
+    <div class="descDiv">
+        <p id="description">Bookmark at 1:20:47</p>
+    </div>
+    <script type="module" src="editBookmark.js"></script>
+</body>
+
+</html>

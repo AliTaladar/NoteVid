@@ -7,7 +7,11 @@ const addNewBookmark = (bookmarksElement, bookmark) => {
     const newBookmarkElement = document.createElement("div");
     const controlsElement = document.createElement("div");
 
-    bookmarkTitleElement.textContent = bookmark.desc;
+    if (bookmark.name.length > 20) {
+        bookmarkTitleElement.textContent = bookmark.name.slice(0, 20) + "...";
+    } else {
+        bookmarkTitleElement.textContent = bookmark.name;
+    }
     bookmarkTitleElement.className = "bookmark-title";
 
     controlsElement.className = "bookmark-controls";
@@ -16,8 +20,9 @@ const addNewBookmark = (bookmarksElement, bookmark) => {
     newBookmarkElement.className = "bookmark";
     newBookmarkElement.setAttribute("timestamp", bookmark.time);
 
-    setBookmarkAttributes("play", onPlay, controlsElement);
-    setBookmarkAttributes("delete", onDelete, controlsElement);
+    setBookmarkAttributes("edit", onEdit, controlsElement, bookmark);
+    setBookmarkAttributes("play", onPlay, controlsElement, bookmark);
+    setBookmarkAttributes("delete", onDelete, controlsElement, bookmark);
 
     newBookmarkElement.appendChild(bookmarkTitleElement);
     newBookmarkElement.appendChild(controlsElement);
@@ -29,7 +34,6 @@ const viewBookmarks = (currentBookmarks = []) => {
     bookmarksElement.innerHTML = "";
 
     if (currentBookmarks.length > 0) {
-        console.log(currentBookmarks);
         for (let i = 0; i < currentBookmarks.length; i++) {
             const bookmark = currentBookmarks[i];
             addNewBookmark(bookmarksElement, bookmark);
@@ -39,7 +43,21 @@ const viewBookmarks = (currentBookmarks = []) => {
     }
 };
 
-const onPlay = async e => {
+const serialize = function (obj) {
+    var str = [];
+    for (var p in obj)
+        if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+    return str.join("&");
+}
+
+
+const onEdit = async (e, bookmark) => {
+    window.location.href = 'editBookmark.html?' + serialize(bookmark);
+};
+
+const onPlay = async (e, bookmark) => {
     const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
     const activeTab = await getActiveTabURL();
 
@@ -49,7 +67,7 @@ const onPlay = async e => {
     })
 };
 
-const onDelete = async e => {
+const onDelete = async (e, bookmark) => {
     const activeTab = await getActiveTabURL();
     const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
     const bookmarkElementToDelete = document.getElementById(
@@ -64,11 +82,23 @@ const onDelete = async e => {
     }, viewBookmarks);
 };
 
-const setBookmarkAttributes = (src, eventListener, controlParentElement) => {
+chrome.runtime.onMessage.addListener((obj, sender, response) => {
+    const { type } = obj;
+
+    if (type === "DELETE") {
+        const bookmarkElementToDelete = document.getElementById(
+            "bookmark-" + bookmarkTime
+        );
+
+        bookmarkElementToDelete.parentNode.removeChild(bookmarkElementToDelete);
+    }
+});
+
+const setBookmarkAttributes = (src, eventListener, controlParentElement, bookmark = null) => {
     const controlElement = document.createElement("img");
     controlElement.src = "assets/" + src + ".png";
     controlElement.title = src;
-    controlElement.addEventListener("click", eventListener);
+    controlElement.addEventListener("click", (e) => eventListener(e, bookmark));
     controlParentElement.appendChild(controlElement);
 };
 
@@ -90,3 +120,5 @@ document.addEventListener("DOMContentLoaded", async () => {
         container.innerHTML = '<div class="title">This is not a youtube video page.</div>';
     }
 });
+
+

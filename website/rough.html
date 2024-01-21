@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NoteVid</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+    </div>
+    <div id="container">
+        <div id="header-container">
+            <div id="sort-container">
+                <h5 id="sortby-text">Sort by</h5>
+                <select id="select">
+                    <option value="Most recent">Most recent</option>
+                    <option value="Least recent">Least recent</option>
+                    <option value="A to Z">A to Z</option>
+                    <option value="Z to A">Z to A</option>
+                </select>   
+            </div>
+        </div>
+        <div id="bookmarks-container">
+<!--        <div class="bookmark" id="bookmark1">
+                <div class="play-button">
+                    <img src="images/play-button.png" alt="Play" class="play-image">
+                </div>
+                <div class="more">
+                    <div class="dot dot1"></div>
+                    <div class="dot dot2"></div>
+                    <div class="dot dot3"></div>
+                </div>
+                <div class="inv-bookmark" id="inv-bookmark1" onclick="defile(1)"></div>
+                <h2 class="bookmark-name" id="bookmark-name1" ondblclick="rename(1)">Bookmark #1</h2>
+                <div class="bookmark-content" id="bookmark-content1">
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                </div>
+                <div class="rename" id="rename1">
+                    <input type="text" class="rename-box" id="rename-box1" value="New name">
+                    <button class="confirm-rename" onclick="renamed(1)">Done</button>
+                </div>
+            </div>
+-->
+        </div>
+    </div>
+    <div id="buff">
+        <button onClick="add()" value="add Bookmark">ADD</button>
+        <input type="text">
+        <br/>
+        <button onClick="sortCriss()">SORT</button>
+    </div>
+</body>
+<script src="script.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+<script src="firebaseScript.js"></script>
+</html>

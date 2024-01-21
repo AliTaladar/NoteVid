@@ -1,0 +1,258 @@
+body{
+    font-family: 'Roboto';
+    font-weight: lighter;
+}
+
+#container{
+    margin: auto;
+    width: 70vw;
+    position: relative;
+}
+
+#header{
+    position: relative;
+    left: -8px;
+    margin: auto;
+    width: 100vw;
+    background-color: rgb(200,200,200);
+    height: 0px;
+    top: -10px;
+}
+
+#header-container{
+    height: 100px;
+}
+
+#sortby-text{
+    float: left;
+    position: absolute;
+    font-size: 13pt;
+    left: calc(35vw - 25px);
+    top: -5px;
+}
+
+#select{
+    position: absolute;
+    top: 50px;
+    left: calc(35vw - 41px);
+}
+
+.bookmark{
+    margin: auto;
+    width: calc(70vw - 3px);
+    height: 70px;
+    border: 1.2px solid rgb(170,170,170);
+    border-radius: 10px;
+    transition: box-shadow 0.2s, height 1s;
+    position: relative;
+    top: 15px;
+    z-index: 0;
+}
+
+.bookmark:hover{
+    box-shadow: 0px 0px 3px 3px rgb(220,220,220);
+}
+
+.bookmark-name{
+    position: absolute;
+    left: 20px;
+    top: 1px;
+    color: rgb(10,25,50);
+    float: left;
+    z-index: 2;
+}
+
+#logo{
+    width: 80px;
+    height: 50px;
+    position: relative;
+    top: 10px;
+    left: 3px;
+}
+
+.play-button{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    right: 70px;
+}
+
+.play-image{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.more{
+    width: 6px;
+    height: 24px;
+    position: absolute;
+    right: 30px;
+    top: 23px;
+    cursor: pointer;
+}
+
+.more:hover .dot{
+    border-color: rgb(70,70,70);
+}
+
+.dot{
+    width: 0px;
+    height: 0px;
+    border: solid rgb(130,130,130) 3px;
+    border-radius: 10px;
+}
+
+.dot2{
+    position: relative;
+    top: 3px;
+}
+
+.dot3{
+    position: relative;
+    top: 6px;
+}
+
+.inv-bookmark{
+    float: left;
+    margin-right: 0px;
+    width: calc(70vw - 115px);
+    position: absolute;
+    height: 70px;
+    z-index: 1;
+}
+
+.bookmark-content{
+    transition: height 1s;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    position: absolute;
+    top: 70px;
+}
+
+#buff{
+    position: absolute;
+    top: 300px;
+}
+
+#bookmarks-container{
+    position: relative;
+    margin: auto;
+    height: 87px;
+}
+
+.rename-box{
+    width: 150px;
+    height: 30px;
+    border: solid rgb(200,200,200) 1px;
+    border-radius: 3px;
+    outline: none;
+    font-size: 15px;
+}
+
+.rename-box:focus{
+    border-color: rgb(150,150,150);
+}
+
+.rename{
+    display: none;
+    position: absolute;
+    top: 18px;
+    left: 20px;
+}
+
+.play-trans{
+    width: 0px;
+    height: 0px;
+    border: solid black 0px;
+    transition: 0.3s;
+}
+
+.confirm-rename{
+    position: absolute;
+    top: 10px;
+    left: 160px;
+}
+
+.separator{
+    background-color: rgb(170,170,170);
+    width: 68vw;
+    height: 1px;
+    position: absolute;
+    top: 445px;
+    left: 1vw;
+}
+
+.icon-notes{
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    top: 510px;
+    left: calc(65vw + 8px);
+    background-color: rgb(200,200,200);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.image-notes{
+    width: 26px;
+    height: 30px;
+    background-color: rgb(200,200,200);
+    position: absolute;
+    right: 8px;
+    top: 10px;
+}
+
+.notes-content{
+    width: 60.8vw;
+    height: 250px;
+    background-color: rgb(235,235,235);
+    border: solid rgb(200,200,200) 4px;
+    position: absolute;
+    top: 455px;
+    left: 4.2vw;
+    border-radius: 12px;
+    overflow: auto;
+}
+
+.summary-content{
+    display: none;
+    width: 60.8vw;
+    height: 250px;
+    background-color: rgb(235,235,235);
+    border: solid rgb(200,200,200) 4px;
+    position: absolute;
+    top: 455px;
+    left: 4.2vw;
+    border-radius: 12px;
+    overflow: auto;
+}
+
+.icon-summary{
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    top: 560px;
+    left: calc(65vw + 8px);
+    background-color: rgb(235,235,235);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.image-summary{
+    width: 26px;
+    height: 30px;
+    background-color: rgb(235,235,235);
+    position: absolute;
+    right: 8px;
+    top: 10px;
+}
+
+.textsn{
+    position: absolute;
+    left: 10px;
+    width: 59vw;
+    text-align: justify;
+}

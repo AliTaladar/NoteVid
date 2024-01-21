@@ -27,24 +27,65 @@ var firebaseConfig = {
       vidId : vidId,
       bookmarkName : bookmarkName,
       bookmarkTime : bookmarkTime,
-      bookmarkNotes : bookmarkNotes
+      bookmarkNotes : bookmarkNotes  
     })
+    alert('saved')
   
   }
-  
+ 
   function get() { // Fetch data from the dataset 
     var bookmarkId = document.getElementById('bookmarkId').value
     var vidId = document.getElementById('vidId').value
     var  user = document.getElementById('user').value
     var bookmark_ref = database.ref('users/'+ user+ '/' + vidId + '/bookmarks/' + bookmarkId)
+    var bookmark_ref_sum = database.ref('users/'+ user+ '/' + vidId)
+    bookmark_ref_sum.on('value', function(snapshot){
+      var data_sum = snapshot.val()
+      return [data.summary]
+    })
     bookmark_ref.on('value', function(snapshot) {
       var data = snapshot.val()
       //extract the data desired with data.vidId for example
+      return [data.vidId, data.bookmarkId, data.bookmarkName, data.bookmarkTime, data.bookmarkNotes] + bookmark_ref_sum.on('value', function(snapshot){
+        var data_sum = snapshot.val()
+        return [data.summary]
+      });
   
       
-  
+    return
     })
   
+  }
+  function get() {
+    var bookmarkId = document.getElementById('bookmarkId').value;
+    var vidId = document.getElementById('vidId').value;
+    var user = document.getElementById('user').value;
+    var bookmark_ref = database.ref('users/' + user + '/' + vidId + '/bookmarks/' + bookmarkId);
+    var bookmark_ref_sum = database.ref('users/' + user + '/' + vidId);
+  
+    var dataObject = {};
+  
+    bookmark_ref_sum.on('value', function (snapshot_sum) {
+      var data_sum = snapshot_sum.val();
+      dataObject.summary = data_sum.summary;
+    });
+  
+    bookmark_ref.on('value', function (snapshot) {
+      var data = snapshot.val();
+  
+      // Extract the data desired with data.vidId for example
+      dataObject.vidId = data.vidId;
+      dataObject.bookmarkId = data.bookmarkId;
+      dataObject.bookmarkName = data.bookmarkName;
+      dataObject.bookmarkTime = data.bookmarkTime;
+      dataObject.bookmarkNotes = data.bookmarkNotes;
+  
+      // Include the summary from bookmark_ref_sum
+      dataObject.summary = dataObject.summary;
+  
+    });
+  
+    return dataObject; // Return the object containing all variables
   }
   
   function update() { // Update the only values that can be updated (bookmarkName, bookmarkNotes, summary)

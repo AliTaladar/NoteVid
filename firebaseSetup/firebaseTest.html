@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Firebase Content Management</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    #container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    #title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    #form_container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #button_container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="title">
+      Using Firebase To Send, Get, Update and Remove Content
+    </div>
+
+    <div id="form_container">
+      <input placeholder="User" type="text" id="user"/>
+      <input placeholder="Video ID" type="text" id="vidId"/>
+      <input placeholder="Bookmark Id's" type="text" id="bookmarkId"/>
+      <input placeholder="Bookmark name" type="text" id="bookmarkName"/>
+      <input placeholder="Bookmark time" type="text" id="bookmarkTime"/>
+      <input placeholder="Bookmark Notes" type="text" id="bookmarkNotes"/>
+    </div>
+
+    <div id="button_container">
+      <button id="submit" onclick="save()"> SUBMIT </button>
+      <button id="get" onclick="get()"> GET </button>
+      <button id="update" onclick="update()"> UPDATE </button>
+      <button id="remove" onclick="remove()"> REMOVE </button>
+    </div>
+  </div>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+<script src="firebaseScript.js"></script>
+
+</html>

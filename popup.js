@@ -1,6 +1,8 @@
 import { getActiveTabURL } from "./utils.js"
 
 const addNewBookmark = (bookmarksElement, bookmark) => {
+    if (document.getElementById("bookmark-" + bookmark.time)) return;
+
     const bookmarkTitleElement = document.createElement("div");
     const newBookmarkElement = document.createElement("div");
     const controlsElement = document.createElement("div");
@@ -15,6 +17,7 @@ const addNewBookmark = (bookmarksElement, bookmark) => {
     newBookmarkElement.setAttribute("timestamp", bookmark.time);
 
     setBookmarkAttributes("play", onPlay, controlsElement);
+    setBookmarkAttributes("delete", onDelete, controlsElement);
 
     newBookmarkElement.appendChild(bookmarkTitleElement);
     newBookmarkElement.appendChild(controlsElement);
@@ -44,9 +47,22 @@ const onPlay = async e => {
         type: "PLAY",
         value: bookmarkTime
     })
- };
+};
 
-const onDelete = e => { };
+const onDelete = async e => {
+    const activeTab = await getActiveTabURL();
+    const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
+    const bookmarkElementToDelete = document.getElementById(
+        "bookmark-" + bookmarkTime
+    );
+
+    bookmarkElementToDelete.parentNode.removeChild(bookmarkElementToDelete);
+
+    chrome.tabs.sendMessage(activeTab.id, {
+        type: "DELETE",
+        value: bookmarkTime,
+    }, viewBookmarks);
+};
 
 const setBookmarkAttributes = (src, eventListener, controlParentElement) => {
     const controlElement = document.createElement("img");
